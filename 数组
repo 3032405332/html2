@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组练习</title>
+    <style>
+        .git-name-url-box{
+            margin: 0 auto;
+            padding: 15px 20px;
+            width: 600px;
+            height: 500px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px #937b7b;
+            overflow-y: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            line-height: 40px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        ul li label{
+            display: block;
+            width: 100px;
+            text-align: left;
+            /*padding-right: 150px;*/
+        }
+        ul li span{
+            display: block;
+            width: calc(100% - 100px);
+            text-align: center;
+        }
+        ul li a{
+            display: block;
+            width: calc(100% - 100px);
+            text-align: left;
+            color: #e5b70f;
+            text-indent: 100px;
+            text-decoration: none;
+            /** 将多余的内容显示为省略号 前提是必须设置为块元素 且设置宽度 */
+            text-overflow: ellipsis; /** 设置内容溢出后的样式 */
+            white-space: nowrap; /** 设置不换行 */
+            overflow: hidden; /** 设置内容不溢出 */
+        }
+        ul li a:hover{
+             color: #ef0e43;
+        }
+        .name{
+          text-align: center;
+        }
+        .name2{
+          padding-left: 10px;
+        }
+        .name3{
+          background-color: #05fab3;
+          padding-left: 10px;
+        }
+        .red{
+          background-color: #08ecca;
+        }
+    </style>
+</head>
+<body>
+   <!--
+      1、盒子水平垂直居中
+      2、把所有人数据录入到数组中
+      3、列表偶数行和奇数行颜色不一致
+   -->
+   <div class="git-name-url-box">
+        <ul id="ul">
+            <!--将动态生成的元素插入到此区域-->
+        </ul>
+   </div>
+   <div>
+     <p>
+       PS:以上结果仅代表个人统计，如有错误，请勿当真
+     </p>
+   </div>
+
+   <script>
+       // 初始数据源
+       const nameUrlList = [
+           {
+             name: '李虹廷',
+             url: 'https://gitee.com/StanLHT/web-deom'
+           },
+           {
+             name: '蒲俊名',
+             url: 'https://gitee.com/CX330_Ormosia/ormosia'
+           },
+           {
+               name: '张鲲鹏',
+               url: 'https://gitee.com/zr041598/wed.html'
+           },
+           {
+               name: '向朝伟',
+               url: 'https://gitee.com/xianghei/web.git'
+           },
+           {
+               name: '何健豪',
+               url: 'https://gitee.com/hjh-cls/web-dome'
+           },
+           {
+               name: '蒲悦添',
+               url: 'https://gitee.com/pu-yuetian/pyt'
+           },
+           {
+               name: '蔡钊',
+               url: 'https://gitee.com/cai-zhao/caizhao'
+           },
+           {
+               name: '杨雪',
+               url: 'https://gitee.com/yangxue616/webdome'
+           },
+           {
+               name: '刘佩伶',
+               url: 'https://gitee.com/liu-peiling/web-front-end'
+           },
+           {
+               name: '刘川虹',
+               url: 'https://gitee.com/ioncecon/test'
+           },
+           {
+               name: '李露',
+               url: 'https://gitee.com/lilu-l/web-demo'
+           },
+           {
+               name: '朱杨',
+               url: 'https://gitee.com/pious-god/projects'
+           },
+           {
+               name: '唐川富',
+               url: 'https://gitee.com/tangchuanfu/web-demo1'
+           },
+           {
+               name: '刘宇',
+               url: 'https://gitee.com/cd-yu/web-demo'
+           },
+           {
+               name: '张鲲鹏',
+               url: 'https://gitee.com/zr041598/wed.html'
+           },
+           {
+               name: '胡佳奇',
+               url: 'https://gitee.com/mayoumimywifi/web-demo'
+           },
+           {
+               name: '吕鹏程',
+               url: 'https://gitee.com/lvpc666/web-demo'
+           },
+           {
+               name: '刘丹',
+               url: 'https://gitee.com/liudan1010/webdome'
+           },
+           {
+               name: '王雨洁',
+               url: 'https://gitee.com/augenstern0/wangyujie'
+           },
+           {
+               name: '李卓阳',
+               url: 'https://gitee.com/yjsp1919810/web-demo'
+           },
+           {
+               name: '杨涛',
+               url: 'https://gitee.com/yang-taon/yang-tao.git'
+           },
+           {
+               name: '王晨晓',
+               url: 'https://gitee.com/kite97/wang_chenxiao'
+           },
+           {
+               name: '杜明洋',
+               url: 'https://gitee.com/xdmyo/xiaodu'
+           },
+           {
+               name: '吴亿',
+               url: 'https://gitee.com/hello-wu-yi/web001.git'
+           },
+           {
+               name: '李海',
+               url: 'https://gitee.com/sannlihai/haige'
+           },
+           {
+               name: '吴涵',
+               url: 'https://gitee.com/wuhan-h/webdome'
+           },
+           {
+               name: '蒋志强',
+               url: 'https://gitee.com/gaat/webhttps://gitee.com/gaat/web'
+           },
+           {
+               name: '黄周',
+               url: 'https://gitee.com/huangzhou2001/webdomo'
+           },
+           {
+               name: '钱科胜',
+               url: '空'
+           },
+           {
+               name: '李云渠',
+               url: '空'
+           },
+           {
+               name: '贾杨',
+               url: '空'
+           },
+           {
+               name: '褚彦凯',
+               url: '空'
+           },
+           {
+               name: '龚涛',
+               url: '空'
+           },
+           {
+               name: '罗延东',
+               url: '空'
+           }
+       ];
+       // 设置标签字符串
+       let liStr = `<li>
+                     <label class="name">姓名</label>
+                     <span>码云项目地址</span>
+                   </li>`;
+       // 遍历数组 并生成每一行的html代码
+       nameUrlList.forEach(function (item, index) {
+         liStr += `<li>
+                            <label class="${(index) % 2 !=0 ? 'name3' : 'name2'}">${(index+1)+"、"+item.name}</label>
+                            <a class="${((index) % 2 !=0 ? 'red' : '')}" target="_blank" href="${item.url}">${item.url}</a>
+                     </li>`
+         // if ((index+2) % 2 == 0){
+         //   liStr += `<li>
+         //                    <label  class="name3" >${(index+1)+"、"+item.name}</label>
+         //                    <a  class="red" target="_blank" href="${item.url}">${item.url}</a>
+         //            </li>`
+         // } else {
+         //   liStr += `<li>
+         //                    <label class="name2" >${(index+1)+"、"+item.name}</label>
+         //                    <a  target="_blank" href="${item.url}">${item.url}</a>
+         //             </li>`
+         // }
+       });
+
+       // 获取Dom节点
+       let ulElem = document.getElementById('ul');
+       // 替换dom节点内的html标签内容
+       ulElem.innerHTML = liStr;
+
+
+   </script>
+
+
+</body>
+</html>
