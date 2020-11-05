@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery实例</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+    <!--
+       1、通过点击事件实现元素的动态添加删除
+       2、通过点击事件实现按钮的放大缩小
+       3、
+    -->
+    <div class="center-box">
+        <div class="image-list">
+            <img src="../dom学习/images/1.jpg"  alt=""/>
+        </div>
+        <div class="btn-box">
+            <button class="button" data-id="1">放大图片</button>
+            <button class="button" data-id="2">缩小图片</button>
+            <button class="button" data-id="3">放旋转图片</button>
+            <button class="button" data-id="4">添加图片</button>
+            <button class="button" data-id="5">删除图片</button>
+        </div>
+    </div>
+
+   <script src="./vendor/jquery3.5.1.min.js"></script>
+    <script src="./vendor/layer/layer.js"></script>
+   <script>
+
+        $('button').click(function () {
+             let $btn = $(this);
+             let dataId = parseInt($btn.attr('data-id')); // 获取元素自定义属性且把值转成数字
+             let $img = $('img'); // 获取img元素
+             // layer.alert(`当前点击：${dataId} 按钮值：${$btn.text()}`);
+             switch (dataId) {
+                  case 1:{
+                      // j原生修改图片大小
+                      // $img[0].style.width = 200+'px';
+                      // $img[0].style.height = 200+'px';
+                      // jq修改图片大小
+                      $img.css({
+                          width: '200px',
+                          height: '300px'
+                      });
+                      break;
+                  }
+                  case 2:{ // 缩小
+                      $img.css({
+                          width: '50px',
+                          height: '100px'
+                      });
+                      break;
+                  }
+                  case 3:{ // 旋转图片
+                     $img.css({
+                         transform: 'rotateZ(90deg)'
+                     });
+                     break;
+                  }
+                 case 4:{
+                     // 获取当起图片所在的父元素 并修改其父元素内容的内容
+                     $img.parent().append(`<img src="../dom学习/images/2.jpeg" alt=""/>`);
+                 }
+                  case 5:{
+                     $img.remove();
+                  }
+             }
+        });
+
+        $('button').dblclick(function () {
+            let $btn = $(this);
+            let dataId = parseInt($btn.attr('data-id')); // 获取元素自定义属性且把值转成数字
+            let $img = $('img'); // 获取img元素
+            layer.msg('双击事件');
+            if(dataId === 1){
+                 $img.css({
+                     transform: 'scale(2)'
+                 });
+            }else if(dataId === 2){
+                $img.css({
+                    transform: 'scale(0.2)'
+                })
+            }else if(dataId === 3){
+                $img.css({
+                    transform: 'rotateZ(120deg)'
+                })
+            }
+        });
+
+        $('.image-list').mousemove(function () {
+             // layer.msg('当鼠标在一个节点内部移动时触发。当鼠标持续移动时，该事件会连续触发。为了避免性能问题，建议对该事件的监听函数做一些限定，比如限定一段时间内只能运行一次');
+        });
+        $('button').mouseenter(function () {
+             let $btn = $(this);
+             if(parseInt($btn.attr('data-id')) <= 3){
+                 // layer.alert('鼠标进入一个节点时触发，进入子节点不会触发这个事件');
+                 layer.msg('此按钮有双击事件和单击事件',{time: 0});
+                 layer.tips('此按钮有单击和双击事件', $btn[0], {time: 0});
+             }
+        }).mouseleave(function () {
+              layer.closeAll();
+        });
+
+        // layer.tips('此按钮有单击和双击事件', '.button');
+
+
+
+   </script>
+</body>
+</html>
