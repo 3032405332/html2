@@ -1,0 +1,49 @@
+/**
+ * 获取指定格式的时间
+ * @param fmt 时间格式  YYYY-mm-dd HH:MM:SS
+ * @param date
+ * @returns {*}
+ */
+function dateFormat(fmt, date) {
+    let ret;
+    const opt = {
+        "Y+": date.getFullYear().toString(),        // 年
+        "m+": (date.getMonth() + 1).toString(),     // 月
+        "d+": date.getDate().toString(),            // 日
+        "H+": date.getHours().toString(),           // 时
+        "M+": date.getMinutes().toString(),         // 分
+        "S+": date.getSeconds().toString()          // 秒
+        // 有其他格式化字符需求可以继续添加，必须转化成字符串
+    };
+    for (let k in opt) {
+        ret = new RegExp("(" + k + ")").exec(fmt);
+        if (ret) {
+            fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+        };
+    };
+    return fmt;
+}
+
+/**
+ * 创建获取易源接口的公共参数
+ * @param params
+ * @returns {*}
+ */
+function createShowApiPublicParams(params) {
+    const secret = '3402b6f4859642dea2e4341785a34d85'; // 秘钥
+    params['showapi_appid']  = 24060; // 当前应用ID
+    params['showapi_timestamp'] = dateFormat('YYYYmmddHHMMSS', (new Date())); // 当前需要的时间
+    // 根据现有的参数生成签名 showapi_sign
+    let keys = Object.keys(params); // 一、获取当前所有参数（非showapi_sign）的键名称数组
+    keys.sort();  // 二、键名按照字典序排序（A-Z）
+    let sign_str = '';
+    keys.forEach(function (key) { // 三、按照字典序拼装字符串（键和值对应）
+        sign_str += `${key}${params[key]}`;
+    });
+    sign_str += secret; // 四、字符串的尾部拼接秘钥
+    let sign = md5(sign_str); // 五、MD5加密生成签名（32位的字符串）
+
+    // 将生成的签名赋值到对象中
+    params['showapi_sign'] = sign;
+    return params;
+}
