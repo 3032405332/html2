@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组练习</title>
+    <style>
+        /** 第二种方式实现盒子居中 */
+        /*html, body{*/
+        /*    height: 100%;*/
+        /*    width: 100%;*/
+        /*    margin: 0;*/
+        /*    padding: 0;*/
+        /*}*/
+        /*body{*/
+        /*    display: flex;*/
+        /*    align-items: center;*/
+        /*    justify-content: center;*/
+        /*}*/
+        .git-name-url-box{
+            padding: 15px 20px;
+            width: 600px;
+            height: 500px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px #937b7b;
+            overflow-y: auto;
+            box-sizing: border-box;
+
+            /** 绝对定位的方式实现水平垂直居中 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /*margin: -250px -300px;*/
+            transform: translate(-50%, -50%);
+        }
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            line-height: 40px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        ul li label{
+            display: block;
+            width: 100px;
+            text-align: center;
+        }
+        ul li span{
+            display: block;
+            width: calc(100% - 100px);
+            text-align: center;
+        }
+        ul li a{
+            display: block;
+            width: calc(100% - 100px);
+            text-align: center;
+            color: #6eb7d8;
+            text-decoration: none;
+            /** 将多余的内容显示为省略号 前提是必须设置为块元素 且设置宽度 */
+            text-overflow: ellipsis; /** 设置内容溢出后的样式 */
+            white-space: nowrap; /** 设置不换行 */
+            overflow: hidden; /** 设置内容不溢出 */
+        }
+        ul li a:hover{
+             color: #d882b4;
+        }
+        .two-color{
+            background-color: #d87c68;
+        }
+    </style>
+</head>
+<body>
+   <!--
+      1、盒子水平垂直居中
+      2、把所有人数据录入到数组中
+      3、列表偶数行和奇数行颜色不一致
+   -->
+   <div class="git-name-url-box">
+        <ul id="ul">
+            <!--将动态生成的元素插入到此区域-->
+        </ul>
+   </div>
+
+   <script>
+       // 初始数据源
+       const nameUrlList = [
+           {
+               name: '张鲲鹏',
+               url: 'https://gitee.com/zr041598/wed.html'
+           },
+           {
+               name: '向朝伟',
+               url: 'https://gitee.com/xianghei/web.git'
+           },
+           {
+               name: '何健豪',
+               url: 'https://gitee.com/hjh-cls/web-dome'
+           },
+           {
+               name: '蒲悦添',
+               url: 'https://gitee.com/pu-yuetian/pyt'
+           },
+           {
+               name: '何能升',
+               url: 'https://gitee.com/cdzqh/web-demo'
+           }
+       ];
+       // 设置标签字符串
+       let liStr = `<li>
+                     <label>姓名</label>
+                     <span>码云项目地址</span>
+                   </li>`;
+       // 遍历数组 并生成每一行的html代码
+       nameUrlList.forEach(function (item, index) {
+           // 方式一
+           // if((index + 1) % 2 == 0){
+           //     liStr += '<li class="two-color">';
+           // }else{
+           //     liStr += '<li>';
+           // }
+           // liStr += `
+           //      <label>${index + 1}、${item.name}</label>
+           //      <a target="_blank" href="${item.url}">${item.url}</a>
+           //     </li>`;
+           // 方式二
+           liStr += `
+                <li class="${(index + 1) % 2 == 0 ? 'two-color' : ''}">
+                <label>${index + 1}、${item.name}</label>
+                <a target="_blank" href="${item.url}">${item.url}</a>
+            </li>`
+       });
+       // 获取Dom节点
+       let ulElem = document.getElementById('ul');
+       // 替换dom节点内的html标签内容
+       ulElem.innerHTML = liStr;
+
+       // 模板字符串 模板字符串内的内容会原样输出 变量使用 ${}
+       let str = '100'
+                 + '200';
+       let str2 = `
+           <div>
+              ${str}、
+              ${1+2}
+          </div>
+       `;
+
+
+   </script>
+
+<!--   <script>-->
+<!--       const names = ['张鲲鹏', '向朝伟', '何健豪', '蒲悦添', '何能升'],-->
+<!--             urls = ['https://gitee.com/zr041598/wed.html', 'https://gitee.com/xianghei/web.git', 'https://gitee.com/hjh-cls/web-dome', 'https://gitee.com/pu-yuetian/pyt', 'https://gitee.com/cdzqh/web-demo'];-->
+<!--       // 设置标签字符串-->
+<!--       let liStr = `<li>-->
+<!--                     <label>姓名</label>-->
+<!--                     <span>码云项目地址</span>-->
+<!--                   </li>`;-->
+<!--       // 循环生成每一行的标签-->
+<!--       for (let i = 0; i < names.length; i++){-->
+<!--            let name = names[i],-->
+<!--                url = urls[i];-->
+<!--            // alert('名称：'+name + ' 链接：'+url);-->
+<!--            liStr += `-->
+<!--                <li>-->
+<!--                <label>${name}</label>-->
+<!--                <a target="_blank" href="${url}">${url}</a>-->
+<!--            </li>-->
+<!--            `;-->
+<!--       }-->
+<!--       // 获取Dom节点-->
+<!--       let ulElem = document.getElementById('ul');-->
+<!--       // 替换dom节点内的html标签内容-->
+<!--       ulElem.innerHTML = liStr;-->
+<!--   </script>-->
+
+</body>
+</html>
