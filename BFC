@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC实例</title>
+    <style>
+        p{
+            width: 200px;
+            height: 100px;
+            background-color: #bad8a5;
+            margin: 40px;
+        }
+        .div1{
+            overflow: hidden;
+        }
+        .div2{
+            width: 600px;
+            /*height: 300px;*/
+            border: 1px  solid blueviolet;
+        }
+        .left{
+           float: left;
+           width: 100px;
+           height: 50px;
+           background-color: #d87c68;
+        }
+       .right{
+           width: 400px;
+           height: 200px;
+           background-color: #d882b4;
+           float: left;
+           /*overflow: hidden;*/
+       }
+       .clear{
+           clear: both;
+       }
+       ul{
+           margin: 100px 0;
+           padding: 0;
+           list-style: none;
+           display: block;
+           width: 500px;
+           border: 1px solid #937b7b;
+           /*height: 100px;*/
+           /*overflow: hidden;*/
+       }
+       li{
+           background-color: #6eb7d8;
+           width: 100px;
+           height: 100px;
+           float: left;
+           margin-right: 20px;
+           margin-bottom: 20px;
+       }
+    </style>
+</head>
+<body>
+     <p>这是第一个标签</p>
+     <div class="div1">
+         <p>这是第二个标签</p>
+     </div>
+     <div class="div2">
+         <div class="left"></div>
+         <div class="right"></div>
+         <div class="clear"></div>
+     </div>
+
+     <ul>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <div class="clear"></div>
+     </ul>
+</body>
+</html>
