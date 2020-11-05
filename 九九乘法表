@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js学习</title>
+    <style>
+         .js-content-box{
+             margin: auto;
+             width: 800px;
+             height: 500px;
+         }
+         table{
+             border: 1px solid #eee;
+
+         }
+         td{
+             width: 120px;
+             height: 40px;
+             background-color: antiquewhite;
+         }
+        .two{
+          width: 120px;
+          height: 40px;
+          background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="js-content-box">
+         <h1>以下是动态内容:</h1>
+         <table id="table" class="one"></table>
+    </div>
+    <script>
+          // 输出到页面
+          let outElem = document.getElementById('table'); // 获取dom元素
+          let tableHtml = '';
+          for (let i = 1; i <= 9;i++){
+              tableHtml += '<tr>';
+              for (let j = 1;j <= i;j++){
+                if(i == 5){
+                  tableHtml += `<td style="background-color: #52e21e">${j} * ${i} = ${i * j}</td>`;
+                }else{
+                  tableHtml += `<td>${j} * ${i} = ${i * j}</td>`;
+                }
+              }
+              tableHtml += '</tr>';
+              console.log(`第${i}次循环：`,tableHtml);
+          }
+          outElem.innerHTML = tableHtml;
+          // 要求第五行背景色为红色
+    </script>
+</body>
+</html>
