@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    /*background-color: rgba(0, 0, 0, .5);*/
+}
+
+body, div, p, ul, li, ol, h1, h2, h3, h4, h5, h6{
+    box-sizing: border-box;
+}
+
+input, button, a, span, label{
+    outline: 0;
+}
+
+.form-box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: rgba(69, 125, 132, 0.08);
+    box-shadow: 0 0 10px #3a1644;
+    transform: translate(-50%, -50%);
+}
+
+.form-item{
+    width: 100%;
+    margin-bottom: 20px;
+    /*overflow: hidden;*/
+}
+
+.form-label{
+    font-size: 14px;
+    color: rgba(0, 0, 0, .8);
+    float: left;
+    width: 80px;
+    text-align: right;
+    padding: 0 15px;
+    display: block;
+    box-sizing: border-box;
+    line-height: 40px;
+}
+.form-input-item{
+    margin-left: 80px;
+    width: 300px;
+    height: 40px;
+    position: relative;
+}
+
+.form-input{
+    width: 100%;
+    border: none;
+    background: none;
+    color: #000;
+    font-size: 14px;
+    line-height: 38px;
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+}
+.form-input-item:hover::before{
+    width: 100%;
+    left: 0;
+}
+.form-input-item::before{
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background-color: #583dd8;
+    box-shadow: 0 1px 2px #b034d8;
+    z-index: 888;
+    transition: all 220ms linear;
+}
+
+.form-item-btn{
+    text-align: center;
+}
+
+.form-item-btn button{
+    background: none;
+    min-width: 100px;
+    line-height: 38px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid rgba(29, 31, 146, 0.1);
+    margin-right: 20px;
+    position: relative;
+}
+.form-item-btn button:hover{
+    /*color: #fff;*/
+}
+.form-item-btn button:hover::before{
+    width: 100%;
+}
+
+.form-item-btn button::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 0;
+    bottom: 1px;
+    border-radius: 20px;
+    background-color: rgba(88, 61, 216, 0.33);
+    transition: all 220ms;
+}
+.from-head{
+    width: 500px;
+    height: 30px;
+    line-height: 40px;
+}
