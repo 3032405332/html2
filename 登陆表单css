@@ -1,0 +1,60 @@
+html{
+    font-size: 10px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 1.4rem;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.login-body{
+   width: 100%;
+   height: 100%;
+   background-image: url('../images/background.png');
+   overflow-y: auto;
+}
+
+.login-body h1{
+  margin: 0;
+  padding:  30px 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-body .login-form-box{
+    margin: 30px auto 50px auto;
+    padding: 50px;
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, .3);
+    border-radius: 4px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+}
+
+/** 中间表单样式 */
+.form-box{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 300px;
+}
+.form-box h4{
+    margin: 0 0 30px 0;
+    padding: 0;
+    font-size: 2.8rem;
+    color: #fff;
+    font-weight: 400;
+}
+
+.form-input-item{ /** 设置表单区域样式 */
+    position: relative;
+    width: 100%;
+    marg
