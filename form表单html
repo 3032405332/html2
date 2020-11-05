@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单练习</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="form-box">
+        <form method="post" action="#">
+             <div class="form-item">
+                 <label class="form-label">账 号</label>
+                 <div class="form-input-item">
+                     <input class="form-input" type="text" name="username" autocomplete="off" maxlength="20" placeholder="请输入用户名"/>
+                 </div>
+             </div>
+            <div class="form-item">
+                <label class="form-label">密 码</label>
+                <div class="form-input-item">
+                    <input class="form-input" type="password" name="password" autocomplete="off" maxlength="20" placeholder="请输入登录密码"/>
+                </div>
+            </div>
+            <div class="form-item-btn">
+                <button class="submit-btn" type="button">立即登录</button>
+                <button cl
