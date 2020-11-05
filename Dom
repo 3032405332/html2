@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom学习</title>
+    <style>
+        .dom-block{
+            width: 500px;
+            height: 500px;
+            background-color: #937b7b;
+        }
+        button{
+            border: none;
+            background-color: #63d86e;
+            width: 100px;
+            height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+   <div class="dom-block">
+         <button id="btn" type="button">按钮</button>
+         <img id="image1" src="images/2.jpeg" alt="" data-name="自定义的属性"/>
+   </div>
+
+
+
+
+    <script>
+         // 获取元素
+         let btn = document.getElementById('btn'); // 通过id获取元素
+         let btn2 = document.getElementsByTagName('button'); // 通过标签名称
+         let btn3 = document.querySelector('#btn'); // 查找id
+         let btnParent = document.querySelector('.dom-block'); // 查找class
+
+         console.log(btn, btn2, btn3, btnParent);
+         // 创建元素
+         let btn4 = document.createElement('button');
+         btn4.innerText = '动态创建的按钮';
+         btn4.style.width = '100px';
+         btn4.style.height = '100px';
+         btn4.style.border = 'none';
+         btnParent.appendChild(btn4);
+
+         let img = document.createElement('img');
+         img.style.width = '200px';
+         img.style.height = '200px';
+         img.src = 'images/1.jpg';
+         img.setAttribute('data-name', '这是添加的动态属性');
+         btnParent.appendChild(img);
+
+         // 修改样式
+         btn.style.backgroundColor = '#000';
+         btn.style.color = '#fff';
+         let image1 = document.getElementById('image1');
+         let url = image1.src;
+         console.log(url);
+         // 获取 自定义属性
+         let dataName = image1.getAttribute('data-name');
+         console.log(dataName);
+         // 删除元素
+         btn.remove();
+
+         function btn4Click() {
+             console.log('这是添加的点击事件');
+         }
+
+         // 添加监听事件
+         btn4.addEventListener('click', btn4Click);
+
+         // 移除事件
+         // btn4.removeEventListener('click', btn4Click);
+
+         // 触发事件
+         let event = new Event('click');
+         btn4.dispatchEvent(event);
+
+
+
+         // 调用
+         // btn4Click();
+
+         /**
+          click：按下鼠标时触发。
+          dblclick：在同一个元素上双击鼠标时触发。
+          mousedown：按下鼠标键时触发。
+          mouseup：释放按下的鼠标键时触发。
+
+          mousemove：当鼠标在一个节点内部移动时触发。当鼠标持续移动时，该事件会连续触发。为了避免性能问题，建议对该事件的监听函数做一些限定，比如限定一段时间内只能运行一次。
+          mouseenter：鼠标进入一个节点时触发，进入子节点不会触发这个事件
+          mouseover：鼠标进入一个节点时触发，进入子节点会再一次触发这个事件
+          mouseout：鼠标离开一个节点时触发，离开父节点也会触发这个事件
+          mouseleave：鼠标离开一个节点时触发，离开父节点不会触发这个事件
+
+
+          contextmenu：按下鼠标右键时（上下文菜单出现前）触发，或者按下“上下文菜单键”时触发
+          */
+
+
+         // 动态创建元素并下载
+         //https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603164698317&di=6caae649730cbbf0bb679dcf5b762c90&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F56%2F12%2F01300000164151121576126282411.jpg
+
+        /** DOM 是 JavaScript 操作网页的接口，全称为“文档对象模型”（Document Object Model）。
+            它的作用是将网页转为一个 JavaScript 对象，从而可以用脚本进行各种操作（比如增删内容）。
+            浏览器会根据 DOM 模型，将结构化文档（比如 HTML 和 XML）解析成一系列的节点，再由这些节点组成一个树状结构（DOM Tree）
+            DOM 的最小组成单位叫做节点（node）,节点的类型共有七种
+             Document：整个文档树的顶层节点
+             DocumentType：doctype标签（比如<!DOCTYPE html>）
+             Element：网页的各种HTML标签（比如<body>、<a>等）
+             Attr：网页元素的属性（比如class="right"）
+             Text：标签之间或标签包含的文本
+             Comment：注释
+             DocumentFragment：文档的片段
+
+           dom的操作
+            1、获取元素
+            2、创建元素
+            3、删除元素
+            4、修改样式
+            5、添加class 删除class
+         */
+        // 标准的dom树
+        // let document = {
+        //     html: {
+        //         head: {
+        //             meta: { charset: 'UTF-8'}
+        //         },
+        //         body: {
+        //             image: { src: '...' },
+        //             input: {name: ''},
+        //             div: {
+        //                 button: {type: 'button'},
+        //                 button: {type: 'submit'}
+        //             }
+        //         }
+        //     }
+        // }
+
+
+
+
+        // 查找元素
+        // 查找第一个符合条件的元素
+        // document.querySelector('#search');
+        // document.querySelector('.actions #search');  // 嵌套查询
+        // document.querySelector('input').value; // 查询元素的属性
+        //
+        //
+        // // 查找符合条件的所有元素，返回数组
+        // document.querySelectorAll('.actions');
+        //
+        // // 创建元素并添加到结尾
+        // let a = document.createElement('a');
+        // a.innerText = '下载';
+
+
+    </script>
+</body>
+</html>
